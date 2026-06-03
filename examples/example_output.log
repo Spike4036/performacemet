@@ -1,0 +1,6 @@
+2026-05-25 00:00:01,102 | INFO | Subscribed to met with cols=['eng.isActive', 'eng', 'exc.isActive', 'exc', 'lex', 'str.isActive', 'str', 'rel.isActive', 'rel', 'int.isActive', 'int', 'attention.isActive', 'attention']
+2026-05-25 00:00:01,103 | INFO | Subscribed to dev with cols=['Battery', 'Signal', 'AF3', 'T7', 'Pz', 'T8', 'AF4', 'OVERALL', 'BatteryPercent']
+2026-05-25 00:00:01,601 | INFO | cognitive_state={'timestamp': 1759225262.5052, 'engagement': 0.72, 'excitement': 0.41, 'long_term_excitement': 0.37, 'stress': 0.31, 'relaxation': 0.66, 'interest': 0.58, 'attention': 0.63, 'battery_percent': 0.94, 'signal': 1.0, 'overall_contact': 0.86, 'headset_on': True, 'sample_rate_quality': 0.99}
+2026-05-25 00:00:01,602 | INFO | placeholders={'cfg': {'parameter': 'cfg_scale', 'source_metric': 'engagement', 'value': 0.72, 'status': 'placeholder'}, 'noise': {'parameter': 'noise_strength', 'source_metric': 'stress', 'value': 0.31, 'status': 'placeholder'}, 'prompt': {'parameter': 'prompt_weighting', 'source_metric': 'interest', 'value': 0.58, 'status': 'placeholder'}, 'stabilization': {'parameter': 'image_stabilization', 'source_metric': 'relaxation', 'value': 0.66, 'status': 'placeholder'}}
+2026-05-25 00:00:02,110 | WARNING | Cortex warning: {'code': 142, 'message': 'Headset disconnected'}
+
