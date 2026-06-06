@@ -33,6 +33,7 @@ class BridgeConfig:
     reconnect_delay_seconds: float = 3.0
     request_access: bool = True
     activate_session: bool = False
+    authorize_debit: int = 0
 
     @classmethod
     def from_env(cls) -> "BridgeConfig":
@@ -54,6 +55,7 @@ class BridgeConfig:
             not in {"0", "false", "no"},
             activate_session=os.getenv("EMOTIV_ACTIVATE_SESSION", "false").lower()
             in {"1", "true", "yes"},
+            authorize_debit=int(os.getenv("EMOTIV_AUTHORIZE_DEBIT", "1")),
         )
 
     def validate(self) -> None:

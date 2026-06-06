@@ -66,16 +66,25 @@ class CortexBridge:
         )
 
     def authorize(self) -> str:
+        params: dict[str, Any] = {
+            "clientId": self.config.client_id,
+            "clientSecret": self.config.client_secret,
+        }
+        if self.config.activate_session and self.config.authorize_debit > 0:
+            params["debit"] = self.config.authorize_debit
+
         result = self._rpc(
             "authorize",
-            {
-                "clientId": self.config.client_id,
-                "clientSecret": self.config.client_secret,
-            },
+            params,
         )
         token = result["cortexToken"]
         self.auth_token = token
-        LOGGER.info("Authorized Cortex session")
+        LOGGER.info(
+            "Authorized Cortex session%s",
+            f" with debit={self.config.authorize_debit}"
+            if self.config.activate_session and self.config.authorize_debit > 0
+            else "",
+        )
         return token
 
     def queryHeadsets(self) -> list[dict[str, Any]]:
@@ -184,6 +193,11 @@ class CortexBridge:
                 LOGGER.info("Stopping bridge")
                 raise
             except Exception as exc:  # noqa: BLE001
+                if "-32019" in str(exc):
+                    LOGGER.error(
+                        "Active session quota is exhausted. Increase EMOTIV_AUTHORIZE_DEBIT "
+                        "or close/reuse existing licensed sessions in EMOTIV Launcher."
+                    )
                 LOGGER.exception("Bridge failure: %s", exc)
                 self.close()
                 LOGGER.info(

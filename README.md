@@ -10,6 +10,8 @@ Current stream architecture:
 
 If you want high-resolution `met` (about 2 Hz), the Cortex session must be created as `active`, and your app/license must include the `pm` scope. Otherwise Cortex falls back to low-resolution `met` at about `0.1 Hz`.
 
+If Cortex returns `-32019 Session limit has been reached`, set `EMOTIV_AUTHORIZE_DEBIT=1` (or higher) in `.env`. Cortex uses this debit value to increase the local session quota for activated sessions.
+
 ## Setup
 
 1. Install dependencies:
